@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Install Draggable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Alexandria', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* General Styles */
+    body {
+        margin: 0;
+        margin-top: 60px; /* Match the height of your navbar */
+        font-family: Arial, sans-serif;
+        background-color: #121212; /* Matches the black background in your image */
+        color: white;
+    }
+
+    body, html {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden; /* Prevent horizontal scrolling */
+    }
+
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        padding: 20px 20px;
+        height: 60px; /* Set a height */
+        z-index: 1000; /* Ensure it appears above other elements */
+        border-bottom: 1px solid #333;
+    }
+
+    .navbar-parent {
+    height: auto; /* Allow sticky behavior within the full height */
+    }
+
+    /* Logo ("draggable") */
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+        display: flex; /* Aligns links horizontally */
+        height: 100%; /* Ensure it matches the navbar height */
+        align-items: center; /* Vertically centers the links */
+        margin: 0; /* Remove default margins */
+        padding: 0; /* Add horizontal padding (no vertical padding) */
+    }
+
+
+    .nav-links a {
+        margin: 0; /* Remove default margins */
+        padding: 20px; 
+
+        font-size: 1rem;
+        height: 60px; /* Set a height */
+        color: #00C2FF;
+        text-decoration: none;
+        text-align: center; /* Centers the text within the link */
+        background-color: black; /* Ensures a consistent background color */
+        justify-content: center; /* Horizontally center the text */
+        transition: background-color 0.3s ease;
+
+    }
+
+    .nav-links a:hover {
+        color: white; /* Highlight color when hovering */
+    }
+
+    /* Highlight the active tab */
+    .nav-link:nth-child(1) {
+        background-color: #00C2FF; /* Color for "Installation Guide" */
+        font-weight: bold;
+        color: #fff;
+    }
+
+/* Main Content (For Testing) */
+    .content {
+        padding: 50px;
+        text-align: center;
+    }
+
+    .content h1 {
+     margin: 20px 0;
+    }
+
+    .content p {
+        font-size: 1.2rem;
+    }
+
+        
+
+    body {
+      background-color: #fff;
+      color: #363333;
+      padding-top: 60px; /* Match the height of your navbar */
+    }
+
+
+
+
+/* Hero Section */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #00C2FF;
+  color: #fff;
+}
+
+.hero-content {
+    margin-left: 60px; /* Adjust the value as needed */
+    max-width: 50%;
+    position: relative;
+    left: 70px; /* Move to the right by 50px */
+}
+
+.hero-content h1 {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  max-width: 75%;
+  color: #000;
+}
+
+.hero-content p strong {
+  font-weight: bold;
+  color: #000;
+}
+
+.download-button {
+  background-color: #ff6f61;
+  color: #fff;
+  padding: 16px 40px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.5rem;
+  box-shadow: 0 4px #d54f49;
+  transition: all 0.3s ease;
+
+  position: absolute; /* or absolute */
+  left: 580px;
+  top: 200px
+}
+
+.download-button:hover {
+  background-color: #e05650;
+  box-shadow: 0 2px #c74543;
+  transform: translateY(2px);
+}
+
+/* Hero Image */
+.hero-image {
+  max-width: 100%;
+  height: 500px
+}
+
+.hero-image img {
+  width: 100%;
+  height: 100%; /* Ensures the container defines the height */
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .hero-content {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .hero-image {
+    max-width: 100%;
+    height: 100%; /* Ensures the container defines the height */
+  }
+}
+
+
+    /* Steps Navigation */
+    .steps-nav {
+      background-color: #fff;
+      padding: 1.5rem;
+      display: flex;
+      width: 100%;
+      justify-content: space-around;
+      border-bottom: 3px solid #000;
+      position: sticky;
+      top: 60px; /* Match the height of the main navbar */
+      z-index: 999; /* Lower than main navbar but still above other content */
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .steps-nav a {
+      color: #363333;
+      font-size: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      padding: 0.5rem;
+      transition: color 0.3s ease;
+    }
+
+    .steps-nav a:hover,
+    .steps-nav a.active {
+      color: #00C2FF;
+    }
+
+    /* Sections */
+    .step {
+      padding: 5rem 4rem;
+      text-align: center;
+      scroll-margin-top: 120px;
+    }
+
+    .step h2 {
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step p {
+      font-size: 1.5rem;
+      line-height: 1.5;
+      max-width: 800px;
+      margin: 0 auto 3rem;
+    }
+
+    /* Media Queries */
+    @media (max-width: 768px) {
+      .hero {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-content {
+        max-width: 40%; /* Reduces the maximum width to 40% of the parent container */
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero p {
+        font-size: 1rem;
+        width: 5px;
+      }
+
+      .hero-image {
+        display: block !important; /* Ensure it overrides media query rules */
+      }
+    }
+
+        /* Footer Styling */
+    .footer {
+        background-color: #000; /* Black background */
+        color: #fff; /* White text */
+        text-align: center;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Team Members Section */
+    .team-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .members {
+        font-size: 14px;
+    }
+
+    .member-link {
+        color: #fff; /* White text for links */
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 5px;
+    }
+
+    .member-link:hover {
+        color: #f0a500; /* Highlight color on hover */
+        text-decoration: underline;
+    }
+
+    /* Course Information Section */
+    .course-info {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #ccc; /* Slightly lighter gray for contrast */
+    }
+
+
+  </style>
+</head>
+
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">draggable</a>
+
+    <div class="nav-links">
+        <a href="install.html" class="nav-link selected">Installation Guide</a>
+        <a href="functions.html" class="nav-link">How it Functions</a>
+        <a href="team.html" class="nav-link">Meet the Team</a>
+    </div>
+  </nav>
+
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+          <h1>How to Install</h1>
+          <p>
+            We walk you through the steps to install 
+            <strong>draggable</strong> into your project. Whether 
+            you're new to JavaScript libraries or looking to refresh 
+            your setup skills, these instructions will get you up and 
+            running in no time!
+          </p>
+
+          <a href="draggable.zip" download>
+            <button class="download-button">Download</button>
+          </a>
+
+        </div>
+
+        <div class="hero-image">
+          <img src="Images/install_photo.jpg" alt="ZIP Icon">
+        </div>
+      </section>
+
+    <!-- Navigation Section -->
+    <nav class="steps-nav">
+        <a href="#step1" class="active">Step 1</a>
+        <a href="#step2">Step 2</a>
+        <a href="#step3">Step 3</a>
+    </nav>
+
+
+    <!-- Steps Section -->
+    <section id="step1" class="step">
+        <h2>Step 1: Download Draggable</h2>
+        <p>
+            Start by downloading the Draggable library from its official GitHub repository. Make sure to get the latest version for optimal compatibility.
+        </p>
+    </section>
+
+    <section id="step2" class="step">
+        <h2>Step 2: Add Draggable to Your Project</h2>
+        <p>
+            Place the downloaded files in your project directory. Link the necessary JavaScript file in your HTML head or before the closing body tag.
+        </p>
+    </section>
+
+    <section id="step3" class="step">
+        <h2>Step 3: Initialize Draggable</h2>
+        <p>
+            Use a simple JavaScript snippet to initialize Draggable on your chosen elements. Customize settings to suit your project needs.
+        </p>
+    </section>
+
+
+    <footer class="footer">
+      <div class="team-members">
+        <p class="team-title">Team Members</p>
+        <p class="members">
+          <a href="jmya_cutter.html" class="member-link">J'Mya Cutter</a> ||
+          <a href="abigail_bahiru.html" class="member-link">Abigail Bahiru</a> ||
+          <a href="mako_suga.html" class="member-link">Mako Suga</a> ||
+          <a href="max_ray.html" class="member-link">Max Ray</a> ||
+          <a href="tia_stroud.html" class="member-link">Tia Stroud</a>
+        </p>
+      </div>
+    
+        <div class="course-info">
+          <p>TCID 3800: Front-End Development II</p>
+          <p>Technical Communication & Interactive Design, Fall Semester 2024</p>
+          <p>Instructor: Brent Phillips</p>
+        </div>
+      </footer>
+
+
+</body>
+
+</html>

@@ -1,0 +1,336 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Install Draggable</title>
+  <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    /* Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Alexandria', sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* General Styles */
+    body {
+        margin: 0;
+        margin-top: 60px; /* Match the height of your navbar */
+        font-family: Arial, sans-serif;
+        background-color: #1f1f1f;
+        background-repeat: no-repeat;
+        background-size: cover; /* or 'contain', 'auto', depending on your needs */
+        background-position: center;
+    }
+
+
+
+    .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: black;
+        padding: 20px 20px;
+        height: 60px; /* Set a height */
+        z-index: 1000; /* Ensure it appears above other elements */
+        border-bottom: 1px solid #333;
+    }
+
+    .navbar-parent {
+        height: auto; /* Allow sticky behavior within the full height */
+    }
+
+    /* Logo ("draggable") */
+    .logo {
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+        text-decoration: none;
+    }
+
+    /* Navigation Links */
+    .nav-links {
+        display: flex; /* Aligns links horizontally */
+        height: 100%; /* Ensure it matches the navbar height */
+        align-items: center; /* Vertically centers the links */
+        margin: 0; /* Remove default margins */
+        padding: 0; /* Add horizontal padding (no vertical padding) */
+    }
+
+
+    .nav-links a {
+        margin: 0; /* Remove default margins */
+        padding: 20px; 
+
+        font-size: 1rem;
+        height: 60px; /* Set a height */
+        color: #f7598b;
+        text-decoration: none;
+        text-align: center; /* Centers the text within the link */
+        background-color: black; /* Ensures a consistent background color */
+        justify-content: center; /* Horizontally center the text */
+        transition: background-color 0.3s ease;
+
+    }
+
+    .nav-links a:hover {
+        color: white; /* Highlight color when hovering */
+    }
+
+    /* Highlight the active tab */
+    .nav-link:nth-child(3) {
+        background-color: #FF78A3; /* Color for "Installation Guide" */
+        font-weight: bold;
+        color: #fff;
+    }
+
+
+
+
+/* Main Content (For Testing) */
+    .content {
+        padding: 50px;
+        text-align: center;
+    }
+
+    .content h1 {
+     margin: 20px 0;
+    }
+
+    .content p {
+        font-size: 1.2rem;
+    }
+
+
+
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+
+
+    .profile-container {
+      max-width: 800px;
+      margin: 100px auto;
+      padding: 40px;
+      background-color: rgba(255, 255, 255, 0.9);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(245, 219, 219, 0.2);
+    }
+    .profile-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .profile-header img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 5px solid #00A2FF;
+      margin-bottom: 15px;
+    }
+    .profile-header h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      color: #00A2FF;
+    }
+    .profile-header h2 {
+      font-size: 1.5rem;
+      color: #555;
+    }
+    .profile-section {
+      margin-bottom: 20px;
+    }
+    .profile-section h3 {
+      font-size: 1.25rem;
+      margin-bottom: 10px;
+      color: #00A2FF;
+    }
+    .profile-links a {
+      display: inline-block;
+      margin-right: 10px;
+      color: #007BFF;
+      text-decoration: none;
+    }
+    .profile-links a:hover {
+      text-decoration: underline;
+    }
+    .profile-bio {
+      font-size: 1rem;
+      color: #444;
+    }
+
+
+
+    body {
+        position: relative;
+    }
+
+
+
+
+    .back-button {
+        position: absolute;
+        top: 5px;
+        left: 90px;
+        background-color: #f7598b;
+        color: #111111;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 1rem;
+        text-align: center;
+        text-decoration: none;
+    }
+
+.back-button a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.back-button:hover {
+  background-color: #a03657; /* Highlight color */
+}
+
+
+
+        /* Footer Styling */
+    .footer {
+        background-color: #000; /* Black background */
+        color: #fff; /* White text */
+        text-align: center;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Team Members Section */
+    .team-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .members {
+        font-size: 14px;
+    }
+
+    .member-link {
+        color: #fff; /* White text for links */
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 5px;
+    }
+
+    .member-link:hover {
+        color: #f0a500; /* Highlight color on hover */
+        text-decoration: underline;
+    }
+
+    /* Course Information Section */
+    .course-info {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #ccc; /* Slightly lighter gray for contrast */
+    }
+
+
+
+    ul {
+      padding-left: 40px; /* Adjusts the indent for the entire list */
+    }
+    /* Indent the specific list item */
+    li {
+      padding-left: 20px; /* Add space on the left */
+    }
+
+  </style>
+</head>
+
+
+
+
+
+<body>
+
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">draggable</a>
+
+    <div class="nav-links">
+        <a href="install.html" class="nav-link selected">Installation Guide</a>
+        <a href="functions.html" class="nav-link">How it Functions</a>
+        <a href="team.html" class="nav-link">Meet the Team</a>
+    </div>
+  </nav>
+
+    
+    <div class="back-button">
+        <a href="team.html">&larr; Back to Full Team</a>
+      </div>
+
+        <div class="profile-container">
+            <div class="profile-header">
+            <!-- Circular image for the team member -->
+            <img src="Images/max_img.png" alt="Max Ray">
+            <h1>Max Ray</h1>
+            <h2>Role: Team Member || Coder</h2>
+            </div>
+            <div class="profile-section">
+              <h3>Bio:</h3>
+              <p class="profile-bio">I am an aspiring visual designer and illustrator, currently pursuing a Bachelor of Science in Interactive Design at Kennesaw State University, where I am learning the principles and practices of user interface design, user experience, web development, visual design, and interactive media. Advanced in Adobe Suite, C#, Java, Figma, Unity. Intermediate in SQL, GML, Python, HTML, CSS, and C++.</p>
+            </div>
+            <h3><br></h3>
+            <div class="profile-section">
+            <h3>Worked On:</h3>
+            <ul>
+              <li>Design Phase Contributions</li>
+              <li>Installation Guide Page</li>
+              <li>How it Functions Page</li>
+            </ul>
+            </div>
+
+            
+            <h3>Links:</h3>
+            <div class="profile-links">
+                <a href="https://im-max-ray.com/" target="_blank" rel="noopener noreferrer">Link to Portfolio</a>
+                <a href="https://www.linkedin.com/in/im-max-ray//" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            </div>
+        </div>
+
+
+
+
+
+      <footer class="footer">
+          <div class="team-members">
+            <p class="team-title">Team Members</p>
+            <p class="members">
+              <a href="jmya_cutter.html" class="member-link">J'Mya Cutter</a> ||
+              <a href="abigail_bahiru.html" class="member-link">Abigail Bahiru</a> ||
+              <a href="mako_suga.html" class="member-link">Mako Suga</a> ||
+              <a href="max_ray.html" class="member-link">Max Ray</a> ||
+              <a href="tia_stroud.html" class="member-link">Tia Stroud</a>
+            </p>
+          </div>
+    
+        <div class="course-info">
+          <p>TCID 3800: Front-End Development II</p>
+          <p>Technical Communication & Interactive Design, Fall Semester 2024</p>
+          <p>Instructor: Brent Phillips</p>
+        </div>
+      </footer>
+
+
+</body>
+
+</html>
