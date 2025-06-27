@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Draggable JS Homepage</title>
+    <link rel="stylesheet" href="styles.css">  
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600;800&display=swap" rel="stylesheet">
+
+
+    <style>
+
+        body {
+                background-color: #5b5b5b; 
+                margin: 0;
+                overflow-x: hidden; /* Disable horizontal scrolling */
+            }
+
+          /* Navigation Links */
+        .nav-links {
+            display: flex; /* Aligns links horizontally */
+            height: 100%; /* Ensure it matches the navbar height */
+            align-items: center; /* Vertically centers the links */
+            margin: 0; /* Remove default margins */
+            padding: 0; /* Add horizontal padding (no vertical padding) */
+        }
+        
+
+
+        .nav-links a {
+            margin: 0; /* Remove default margins */
+            padding: 20px; 
+
+            font-size: 1rem;
+            height: 60px; /* Set a height */
+            color: #ffffff;
+            text-decoration: none;
+            text-align: center; /* Centers the text within the link */
+            background-color: black; /* Ensures a consistent background color */
+            justify-content: center; /* Horizontally center the text */
+            transition: background-color 0.3s ease;
+
+        }
+
+        .nav-links a:hover {
+            color: rgb(216, 98, 230); /* Highlight color when hovering */
+        }
+
+        /* Highlight the active tab */
+        .nav-link:nth-child(1) {
+            background-color: #000000; /* Color for "Installation Guide" */
+            color: #fff;
+        }
+
+    /* Main Content (For Testing) */
+        .content {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .content h1 {
+            margin: 20px 0;
+        }
+
+        .content p {
+            font-size: 1.2rem;
+        }
+
+        /* Footer Styling */
+    .footer {
+        background-color: #000; /* Black background */
+        color: #fff; /* White text */
+        text-align: center;
+        padding: 20px;
+        font-family: 'Arial', sans-serif;
+        font-size: 14px;
+        line-height: 1.5;
+    }
+
+    /* Team Members Section */
+    .team-title {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    .members {
+        font-size: 14px;
+    }
+
+    .member-link {
+        color: #fff; /* White text for links */
+        text-decoration: none;
+        font-weight: bold;
+        margin: 0 5px;
+    }
+
+    .member-link:hover {
+        color: #f0a500; /* Highlight color on hover */
+        text-decoration: underline;
+    }
+
+    /* Course Information Section */
+    .course-info {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #ccc; /* Slightly lighter gray for contrast */
+    }
+
+
+        /* Hero Section */
+        .hero {
+            display: flex; /* Use flex for alignment */
+            align-items: center; /* Vertically center content */
+            gap: 20px; /* Maintain space between columns */
+            padding-left: 100px;
+            box-sizing: border-box; /* Ensure padding doesn't affect size */
+            
+        }
+
+        /* Hero Content (Text and Buttons) */
+        .hero-content {
+            text-align: left; /* Align text inside the container to the left */
+            grid-column: 2; /* Ensure this container is on the second column */
+            width: 800px;
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: auto; /* Maintain aspect ratio */
+            height: 100%; /* Fill the hero section's height */
+            display: block; /* Remove any inline gaps */
+            object-fit: cover; /* Adjust scaling for consistent fit */
+            margin-top: 150px;
+            padding: 0; /* Ensure no extra padding */
+            height: 100%; /* Match the height of the parent .hero section */
+            display: flex;
+            align-items: flex-end; /* Align image bottom with the section */
+        }
+
+
+
+        /* Hero Title and Description */
+        .hero-title {
+            font-size: 25rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #fff; /* Ensures title stands out */
+ 
+        }
+        .hero .hero-title {
+            font-size: 5rem; /* Make the title larger */
+            width: 1200px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            width: 1000px;
+            color: whitesmoke;
+        }
+
+        .hero-description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            width: 500px;
+            color: #1a1a1a; /* Ensures title stands out */
+
+            position: relative; /* or absolute */
+            left: 45px; /* Move to the right by 50px */
+        }
+
+        /* Button Group */
+        .button-group {
+            display: flex;
+            size: 5rem;
+            justify-content: flex-start; /* Align buttons to the left */
+            gap: 50px;
+
+            position: relative; /* or absolute */
+            left: 300px; /* Move to the right by 50px */
+        }
+
+        .btn {
+            font-size: 20px; /* Increase the text size */
+            padding: 15px 30px; /* Increase the button's padding */
+            border-radius: 5px;
+            text-decoration: none;
+            text-align: center;
+        }
+
+        .btn.primary {
+            background-color: #00c3ff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px #047ea3;
+            transition: all 0.3s ease;
+        }
+
+        .btn.primary:hover {
+            background-color: #2d2dcc;
+            box-shadow: 0 2px #0b009e;
+            transform: translateY(2px);
+        }
+
+        .btn.secondary {
+            background-color: #00c3ff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px #047ea3;
+            transition: all 0.3s ease;
+        }
+
+        .btn.secondary:hover {
+            background-color: #2d2dcc;
+            box-shadow: 0 2px #0b009e;
+            transform: translateY(2px);
+        }
+
+        .button-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            padding: 10px;
+            border: 2px dashed #ccc;
+            background-color: #f9f9f9;
+        }
+
+        .draggable-button {
+            cursor: grab;
+        }
+
+        .draggable-button:active {
+            cursor: grabbing;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr; /* Single column for mobile */
+            text-align: center; /* Center-align all content */
+        }
+
+        .hero-content,
+        .hero-image {
+            grid-column: auto; /* Allow stacking */
+        }
+
+        .button-group {
+            justify-content: center; /* Center-align buttons */
+        }
+        }
+
+        
+
+    /* whts the point */
+        /* Header styling */
+        .wtPoint-header {
+            font-size: 55px; /* Larger font size for emphasis */
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 0px; /* Add space below the header */
+            justify-content: left; /* Left buttons */
+
+            position: relative; /* or absolute */
+            left: 70px; 
+        }
+
+        .side-by-side {
+            display: flex;
+            align-items: center; /* Vertically aligns elements */
+            gap: 10px; /* Space between elements */
+            margin-bottom: 5px;
+            padding-bottom: 10px;
+        }
+
+        .side-by-side h3,
+        .side-by-side p {
+            margin-bottom: auto; 
+        }
+
+        /* Purpose text styling */
+        .wtPoint-purpose {
+            font-size: 40px;
+            font-weight: normal;
+            color: #333;
+            margin-bottom: 15px; /* Add space below the subheader */
+
+            position: relative; /* or absolute */
+            left: 400px; 
+        }
+
+        /* Description text styling */
+        .wtPoint-description {
+            font-size: 35px;
+            color: #525252;
+            margin-bottom: 30px; /* Add space below the description */
+            width: 700px;
+
+            position: relative; /* or absolute */
+            top: 2px;
+            left: 400px; 
+        }
+
+
+
+
+
+/* dont just learn abt it */
+
+        .djlaboutIt{
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+        .djlaboutIt header {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 10px;
+            text-align: center;
+            right: 400px;
+            color: rgb(255, 255, 255);
+            margin: 0;
+        }
+
+        .djlaboutIt h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 0 10px;
+        }
+
+        .card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            width: 200px;
+            text-align: center;
+            transition: transform 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-image {
+            background-color: #d8b4f1;
+            height: 120px;
+            width: 100%;
+        }
+
+        .card-text {
+            padding: 20px 10px;
+        }
+
+        .card-text h4 {
+            font-size: 1.2rem;
+            color: black;
+            margin: 0 0 10px;
+        }
+
+        .card-text a {
+            color: #ff69b4;
+            font-weight: bold;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .card-text a:hover {
+            color: #ff1493;
+        }
+
+
+
+
+
+        .nhInstalling {
+                background-image: url('Images/Install Section.svg'); 
+                background-size: cover; /* Ensures the image covers the entire section */
+                background-repeat: no-repeat; /* Prevents the image from tiling */
+                height: 3.5in;
+                background-position: center; /* Keeps the image centered in the section */
+                text-align: center;
+                position: relative;
+                cursor: pointer;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .nhInstalling:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+
+            .nhInstalling h3 {
+            opacity: 0; /* Fully transparent */
+
+            }
+
+            .nhInstalling a {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                text-decoration: none;
+                z-index: 10;
+                opacity: 0; /* Fully transparent */
+            }
+
+            /* Buttons in "Need Help Installing" section */
+            .nhInstalling .buttons button {
+                opacity: 0; /* Fully transparent */
+
+            }
+
+            .nhInstalling .buttons button:hover {
+                opacity: 0; /* Fully transparent */
+            }
+
+
+    .content-wrapper, .content-section {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+    }
+
+
+    .content-section.active {
+      display: block;
+    }
+
+    /* Swappable Grid */
+
+
+    .swappable-item {
+      height: 70px;
+      width: 400px;
+      padding: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 28px;
+      cursor: move;
+      border-radius: 4px;
+      transition: transform 0.2s ease;
+      color: white;
+    }
+
+    /* Color variations for swappable items */
+    .swappable-item.color1 { background: #FFB53E; }
+    .swappable-item.color2 { background: #D6B3F4; }
+    .swappable-item.color3 { background: #45B7D1; }
+    .swappable-item.color4 { background: #53C760; }
+
+
+    /* Hover effect */
+    .swappable-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    /* Style for item being dragged */
+    .swappable-item.draggable-mirror {
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+    }
+
+    .swappable-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px; /* Increase to widen spacing */
+        padding: 40px;
+        border-radius: 4px;
+    }
+
+    .swappable-item {
+        cursor: grab;
+        transition: transform 0.2s ease; /* Adds smoothness to swapping */
+    }
+
+.swappable-item:active {
+        cursor: grabbing;
+        transform: scale(1.05); /* Slight scaling for feedback */
+    }
+
+    /* Reset content wrapper to original style */
+    .content-wrapper {
+      padding: 40px 120px;
+      width: 100%;
+    }
+
+    .content-wrapper, .content-section {
+        margin: 0;
+        padding: 0;
+    }
+    /* Content Sections */
+    .content-section {
+      width: 100%;
+    }
+
+    .content-section.active {
+      display: block;
+    }
+
+
+        /* Footer Styling */
+        .footer {
+            background-color: #000; /* Black background */
+            color: #fff; /* White text */
+            text-align: center;
+            padding: 20px;
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+
+        /* Team Members Section */
+        .team-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .members {
+            font-size: 14px;
+        }
+
+        .member-link {
+            color: #fff; /* White text for links */
+            text-decoration: none;
+            font-weight: bold;
+            margin: 0 5px;
+        }
+
+        .member-link:hover {
+            color: #f0a500; /* Highlight color on hover */
+            text-decoration: underline;
+        }
+
+        /* Course Information Section */
+        .course-info {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #ccc; /* Slightly lighter gray for contrast */
+        }
+
+            
+    </style>
+
+
+</head>
+
+<body>
+
+    
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <a href="index.html" class="logo">draggable</a>
+
+    <div class="nav-links">
+        <a href="install.html" class="nav-link selected">Installation Guide</a>
+        <a href="functions.html" class="nav-link">How it Functions</a>
+        <a href="team.html" class="nav-link">Meet the Team</a>
+    </div>
+  </nav>
+
+    <!-- Sections -->
+    <section class="hero draggableJS">
+        <div class="hero-content">
+          <h1 class="hero-title">draggable JS</h1>
+          <h3 class="hero-subtitle">a lightweight, responsive, modern drag & drop library</h3>
+          <p class="hero-description">
+            Draggable is a flexible drag-and-drop library that lets you start with the basics 
+            and add features as needed. At its core, it provides drag-and-drop functionality, 
+            quick DOM reordering, accessible HTML structure, and a set of events to work with.
+          </p>
+          <div class="button-group">
+            <a href="draggable.zip" class="btn primary" download="draggable.zip">Download</a>
+            <a href="functions.html" class="btn secondary">Examples</a>
+          </div>
+        </div>
+        <div class="hero-image">
+          <img src="Images/home_hero.png" alt="Abstract draggable puzzle illustration">
+        </div>
+
+    </section>
+
+    <section class="wtPoint">
+        <header class="wtPoint-header">What's the Point?</header>
+
+        <div class="side-by-side">
+            <h3 class="wtPoint-purpose">It's Purpose:</h3>
+            <p class="wtPoint-description">Below are ways the library is utilized.</p>
+        </div>
+
+            <!-- Swappable Section -->
+    <div id="swappable-section" class="content-section">
+                <div class="content-wrapper">
+                    <div class="swappable-grid">
+                        <div class="swappable-item color1">task management</div>
+                        <div class="swappable-item color2">visually appealing</div>
+                        <div class="swappable-item color3">engaging</div>
+                        <div class="swappable-item color4">UI Sorting</div>
+                    </div>
+                </div>
+        </div>
+
+    </section>
+
+
+    <section class="djlaboutIt">
+        <header>don't just learn about it</header>
+        <h3>Play around with the various design functions</h3>
+
+        <div class="card-container">
+          <div class="card">
+            <div class="card-image"></div>
+            <div class="card-text">
+              <h4>Draggable</h4>
+              <a href="functions.html">Learn more</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-image"></div>
+            <div class="card-text">
+              <h4>Droppable</h4>
+              <a href="functions.html">Learn more</a>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-image"></div>
+            <div class="card-text">
+              <h4>Sortable</h4>
+              <a href="functions.html">Learn more</a>
+          </div>
+        </div>
+          <div class="card">
+            <div class="card-image"></div>
+            <div class="card-text">
+              <h4>Swappable</h4>
+              <a href="functions.html">Learn more</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Need Help Installing Section -->
+    <section class="nhInstalling">
+      <a href="install.html" aria-label="Navigate to Installation Guide"></a>
+      <h3>Need Help Installing?</h3>
+      <h3>Follow Our Guide Here!</h3>
+      <div class="buttons">
+          <button>Installation Guide</button>
+      </div>
+    </section>
+
+<footer class="footer">
+        <div class="team-members">
+          <p class="team-title">Team Members</p>
+          <p class="members">
+            <a href="jmya_cutter.html" class="member-link">J'Mya Cutter</a> ||
+            <a href="abigail_bahiru.html" class="member-link">Abigail Bahiru</a> ||
+            <a href="mako_suga.html" class="member-link">Mako Suga</a> ||
+            <a href="max_ray.html" class="member-link">Max Ray</a> ||
+            <a href="tia_stroud.html" class="member-link">Tia Stroud</a>
+          </p>
+        </div>
+        
+    <div class="course-info">
+        <p>TCID 3800: Front-End Development II</p>
+        <p>Technical Communication & Interactive Design, Fall Semester 2024</p>
+        <p>Instructor: Brent Phillips</p>
+    </div>
+</footer>
+
+
+<script type="module">
+    // Import all required draggable functionality from Shopify CDN
+    import {
+      Draggable,
+      Sortable,
+      Droppable,
+      Swappable,
+    } from 'https://cdn.jsdelivr.net/npm/@shopify/draggable/build/esm/index.mjs';
+
+    console.log('Initializing draggable functionality...');
+
+    // Draggable Switch Implementation:
+    // - Tracks mouse position relative to container
+    // - Updates switch state based on drag position (>50% = on)
+    // - Uses CSS transforms for smooth animations
+
+    // Initialize draggable switch
+    const switchContainer = document.querySelector('.switch-container');
+    const switchHandle = switchContainer.querySelector('.switch-handle');
+
+    if (switchContainer && switchHandle) {
+      console.log('Initializing switch...');
+      const draggable = new Draggable([switchContainer], {
+        draggable: '.draggable',
+        distance: 0
+      });
+
+      draggable.on('drag:move', (evt) => {
+        const container = evt.source.parentNode;
+        const containerRect = container.getBoundingClientRect();
+        const x = evt.sensorEvent.clientX - containerRect.left;
+        const percentage = Math.min(Math.max((x / containerRect.width) * 100, 0), 100);
+        
+        // Update switch state based on position
+        const shouldBeOn = percentage > 50;
+        switchContainer.classList.toggle('on', shouldBeOn);
+        switchHandle.textContent = shouldBeOn ? 'on' : 'off';
+      });
+    }
+
+    // Droppable Grid Implementation:
+    // - Validates drops using data-dropzone attributes
+    // - Provides visual feedback during dragging
+    // - Handles occupied/empty states of dropzones
+    // - Uses event delegation for performance
+
+    // Debug logs for droppable section
+    console.log('Before droppable initialization');
+    const droppableContainer = document.querySelector('.droppable-grid');
+    console.log('Found container:', droppableContainer);
+
+    if (droppableContainer) {
+      console.log('Initializing draggable...');
+      
+      const draggableInstance = new Draggable(droppableContainer, {
+        draggable: '.droppable-item',
+        mirror: {
+          constrainDimensions: true,
+          appendTo: 'body'
+        }
+      });
+
+      let currentDraggedItem = null;
+      let currentDropZone = null;
+
+      // Helper function to find dropzone under point
+      function findDropZoneAtPoint(x, y) {
+        const zones = document.querySelectorAll('.droppable-zone');
+        return Array.from(zones).find(zone => {
+          const rect = zone.getBoundingClientRect();
+          return x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+        });
+      }
+
+      draggableInstance.on('drag:start', (evt) => {
+        console.log('Started dragging');
+        if (evt.source) {
+          currentDraggedItem = evt.source;
+          evt.source.style.opacity = '0.5';
+        }
+      });
+
+      draggableInstance.on('drag:move', (evt) => {
+        if (!currentDraggedItem) return;
+
+        // Find dropzone under current mouse position
+        const dropZone = findDropZoneAtPoint(evt.sensorEvent.clientX, evt.sensorEvent.clientY);
+        
+        // Remove active class from previous dropzone
+        if (currentDropZone && currentDropZone !== dropZone) {
+          currentDropZone.classList.remove('dropzone-active');
+        }
+        
+        // Add active class to current dropzone if it's valid
+        if (dropZone && dropZone.dataset.dropzone === currentDraggedItem.dataset.dropzone) {
+          dropZone.classList.add('dropzone-active');
+          currentDropZone = dropZone;
+        } else {
+          currentDropZone = null;
+        }
+      });
+
+      draggableInstance.on('drag:stop', (evt) => {
+        console.log('Stopped dragging');
+        
+        if (currentDraggedItem && currentDropZone) {
+          // Valid drop
+          if (currentDraggedItem.dataset.dropzone === currentDropZone.dataset.dropzone) {
+            console.log('Valid drop!');
+            currentDropZone.appendChild(currentDraggedItem);
+            currentDropZone.classList.add('dropzone-occupied');
+          }
+        }
+
+        // Reset states
+        if (currentDraggedItem) {
+          currentDraggedItem.style.opacity = '1';
+        }
+        if (currentDropZone) {
+          currentDropZone.classList.remove('dropzone-active');
+        }
+        
+        currentDraggedItem = null;
+        currentDropZone = null;
+        
+        // Clean up any lingering active classes
+        document.querySelectorAll('.dropzone-active').forEach(zone => {
+          zone.classList.remove('dropzone-active');
+        });
+      });
+    }
+
+    // Sortable List Implementation:
+    // - Uses handle for drag initiation
+    // - Excludes disabled items from sorting
+    // - Maintains list structure during drag
+
+    // Initialize sortable
+    const sortableContainer = document.querySelector('.sortable-container');
+    if (sortableContainer) {
+      console.log('Setting up sortable list...');
+      const sortable = new Sortable(sortableContainer, {
+        draggable: '.sortable-item:not(.disabled)',
+        handle: '.handle'
+      });
+    }
+
+    // Swappable Grid Implementation:
+    // - Direct element swapping in grid layout
+    // - Maintains grid structure
+    // - Uses CSS transitions for smooth animations
+
+    // Initialize swappable
+    const swappableContainer = document.querySelector('.swappable-grid');
+    if (swappableContainer) {
+        const swappable = new Swappable(swappableContainer, {
+            draggable: '.swappable-item', // Define draggable items
+            mirror: {
+                constrainDimensions: true // Keeps mirror size consistent
+            }
+        });
+    }
+
+    // Tab Navigation:
+    // - Manages active states for tabs and content
+    // - Shows/hides content sections based on selected tab
+    
+    document.querySelectorAll('.nav-tab').forEach(tab => {
+      tab.addEventListener('click', () => {
+        document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+        tab.classList.add('active');
+        
+        const sectionId = `${tab.dataset.section}-section`;
+        document.querySelectorAll('.content-section').forEach(section => {
+          section.classList.remove('active');
+        });
+        document.getElementById(sectionId).classList.add('active');
+      });
+    });
+</script>
+      
+</body>
+</html>
+
